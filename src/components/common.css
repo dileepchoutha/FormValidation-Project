@@ -1,0 +1,39 @@
+body{
+  background-image: url(./Assets/istockphoto-1544519291-2048x2048.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.test{
+  display: flex;
+  justify-content: end;
+  margin: 20px;
+}
+.RegFormBox{
+  margin-top: 100px;
+}
+.userdata{
+  margin-top: 70px;
+}
+.icon1 {
+  color: red;
+}
+.icon2{
+  color: blue;
+}
+.note{
+  margin-top: 40px;
+  font-size: 15px;
+  color: rgb(34, 40, 36);
+}
+.title{
+  margin-top: 15px;
+  margin-right: 50px;
+  color: rgb(17, 28, 230);
+}

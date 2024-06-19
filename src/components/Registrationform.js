@@ -19,7 +19,7 @@ const Registrationform = () => {
   useEffect(() => {
     let numExp = /^[0-9]+$/;
     let alphaExp = /^[a-zA-Z ]+$/;
-    let addressExp = /^[a-zA-Z0-9@, ]+$/;
+    let addressExp = /^[a-zA-Z0-9@,/ ]+$/;
     if (id === "") {
       document.querySelector(".title1").innerHTML = "Please enter the ID";
     } else if (id.match(numExp)) {

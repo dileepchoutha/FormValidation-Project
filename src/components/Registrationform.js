@@ -6,14 +6,20 @@ import InputLabel from "@mui/material/InputLabel";
 import "./common.css";
 import Button from "@mui/material/Button";
 import axios from "axios";
-import { NavLink, useNavigate } from "react-router-dom";
-import Home from "./Home";
+import { useNavigate } from "react-router-dom";
 
 const Registrationform = () => {
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
+  const [state, setState] = useState({
+    id: "",
+    name: "",
+    phone: "",
+    address: ""
+  })
+  const {id, name, phone, address} = state;
+  // const [id, setId] = useState("");
+  // const [name, setName] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,11 +70,12 @@ const Registrationform = () => {
       .post("http://localhost:5000/userdata", { id, name, phone, address })
       .then((res) => {
         alert('Data added successfully')
-        setId("");
-        setPhone("");
-        setName("");
-        setAddress("");
-        navigate('/')
+        setState({
+          id: "",
+          name: "",
+          phone: "",
+          address: ""
+        })
       },[id])
       .catch((err) => {
         alert('Failed to add data')
@@ -76,32 +83,40 @@ const Registrationform = () => {
     } else {
       document.querySelector('.note').innerHTML="Please fill the Mandatory fileds"
     }
+    navigate('/userdata');
    
   };
 
+   const changehandler = (key, value) => {
+
+  const cloneState = {...state};
+  cloneState[key] = value
+  setState(cloneState)
+
+   }
   return (
     <Box className="RegFormBox">
       <div>
         <FormControl variant="standard">
           <InputLabel>ID</InputLabel>
-          <Input value={id} onChange={(e) => setId(e.target.value)} />
+          <Input value={id} onChange={(e) => changehandler('id', e.target.value)} />
           <div className="title title1"></div>
         </FormControl>
         <FormControl style={{ marginLeft: 60 }} variant="standard">
           <InputLabel>Name</InputLabel>
-          <Input value={name} onChange={(e) => setName(e.target.value)} />
+          <Input value={name} onChange={(e) => changehandler('name', e.target.value)} />
           <div className="title title2"></div>
         </FormControl>
       </div>
       <div style={{ marginTop: 30 }}>
         <FormControl variant="standard">
           <InputLabel>Phone</InputLabel>
-          <Input value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <Input value={phone} onChange={(e) => changehandler('phone', e.target.value)} />
           <div className="title title3"></div>
         </FormControl>
         <FormControl style={{ marginLeft: 60 }} variant="standard">
           <InputLabel>Address</InputLabel>
-          <Input value={address} onChange={(e) => setAddress(e.target.value)} />
+          <Input value={address} onChange={(e) => changehandler('address', e.target.value)}  />
           <div className="title title4"></div>
         </FormControl>
       </div>
